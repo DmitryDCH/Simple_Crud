@@ -19,13 +19,17 @@ const {
   deleteUserById,
 } = require('../controllers/user-delete-controller');
 
+const checkValidation = require('../middleware/check-valid');
+
+const { createUserValidation, updateUserValidation } = require('../validation/user-validation');
+
 
 router.get('/', getAllUsers);
 router.get('/:id', getUserById);
 
-router.post('/', createUser);
+router.post('/', checkValidation(createUserValidation), createUser);
 
-router.put('/:id', updateUser);
+router.put('/:id', checkValidation(updateUserValidation), updateUser);
 
 router.delete('/:id', deleteUserById);
 
