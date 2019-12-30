@@ -1,5 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
-const store = createStore();
+import rootReducer from './reducers/root-reducer';
+
+const store = createStore(rootReducer);
+
+// saga middleware run and listen some type of actions
 
 export default store;

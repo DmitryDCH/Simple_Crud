@@ -1,0 +1,20 @@
+// Types
+const GET_ALL_USERS = 'GET_ALL_USERS';
+const GET_USER_BY_ID = 'GET_USER_BY_ID';
+
+const UPDATE_USER_BY_ID = 'UPDATE_USER_BY_ID';
+
+const CREATE_USER = 'CREATE_USER';
+
+const DELETE_USER = 'DELETE_USER';
+
+// Action creators
+// todo
+
+export {
+ GET_ALL_USERS,
+ GET_USER_BY_ID,
+ UPDATE_USER_BY_ID,
+ CREATE_USER,
+ DELETE_USER,
+}
