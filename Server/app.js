@@ -7,6 +7,9 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// connect to mongo
+require('./config/mongo-connect')();
+
 app.use(logger('dev'));
 
 app.use(express.json());

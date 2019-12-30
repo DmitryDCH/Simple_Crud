@@ -1,9 +1,12 @@
 const { getAllUsers, getUserById } = require('../models/user-model');
 
 exports.getAllUsers = async (req, res) => {
-  res.send({ message: 'On get all users' });
+  const users = await getAllUsers();
+  res.status(200).send(users);
 };
 
 exports.getUserById = async (req, res) => {
-  res.send({ message: 'On get user by id' });
+  const { id } = req.params;
+  const user = await getUserById(id);
+  res.status(200).send(user);
 };
