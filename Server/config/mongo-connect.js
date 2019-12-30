@@ -5,6 +5,7 @@ const connectToMongo = async () => {
     await connect('mongodb+srv://simpleUser:PasswordForSimpleUser@cluster0-q5xnz.mongodb.net/Crud?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     });
     // eslint-disable-next-line
     console.log('Connected to mongo');

@@ -21,10 +21,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  birthDate: {
-    type: String,
-    required: true,
-  },
+}, {
+  timestamps: false,
 });
 
 const userModel = model('users', userSchema);
@@ -45,9 +43,12 @@ const getAllUsers = async () => {
   }
 };
 
-const updateUser = async (id) => {
+const updateUser = async (id, updateObj) => {
   try {
-    // todo
+    const updatedUser = await userModel.findByIdAndUpdate(id, {
+      ...updateObj,
+    });
+    return updatedUser;
   } catch (error) {
     return error;
   }
@@ -55,16 +56,29 @@ const updateUser = async (id) => {
 
 const deleteUser = async (id) => {
   try {
-    const user = await userModel.findByIdAndDelete(id);
-    return user;
+    const deletedUser = await userModel.findByIdAndDelete(id);
+    return deletedUser;
   } catch (error) {
     return error;
   }
 };
 
-const createUser = async () => {
+const createUser = async ({
+  name,
+  surname,
+  nickname,
+  email,
+  password,
+}) => {
   try {
-    // todo
+    const createdUser = await userModel.create({
+      name,
+      surname,
+      nickname,
+      email,
+      password,
+    });
+    return createdUser;
   } catch (error) {
     return error;
   }
