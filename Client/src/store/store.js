@@ -1,9 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducers/root-reducer';
 
-const store = createStore(rootReducer);
+import rootSaga from './saga-effects/saga-effects';
 
-// saga middleware run and listen some type of actions
+const sagaMiddleware = createSagaMiddleware(); 
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSaga);
 
 export default store;
