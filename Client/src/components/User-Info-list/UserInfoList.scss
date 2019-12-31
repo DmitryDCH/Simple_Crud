@@ -1,0 +1,58 @@
+.user-info {
+  width: 55rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .advice {
+    font-size: 3rem;
+  }
+  &_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    &_item {
+      padding: 0.5rem 0rem;
+      font-size: 1.5rem;
+      .info{
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+      .btn-action_delete{
+        font-weight: bold;
+        color: #ffffff;
+        background-color: lightcoral;
+        font-size: 1.5rem;
+        border: none;
+        padding: 0.4rem;
+        margin: 0.5rem;
+        cursor: pointer;
+        &:hover{
+          background-color: #000000;
+          color: yellow;
+          transition: 0.3s;
+        }
+      }
+      .btn-action_update{
+        font-weight: bold;
+        color: #ffffff;
+        background-color: lightseagreen;
+        font-size: 1.5rem;
+        border: none;
+        padding: 0.4rem;
+        margin: 0.5rem;
+        cursor: pointer;
+        &:hover{
+          background-color: #000000;
+          color: yellow;
+          transition: 0.3s;
+        }
+      }
+      .status {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: maroon;
+      }
+    }
+  }
+}

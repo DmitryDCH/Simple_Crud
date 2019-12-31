@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './App.scss';
 
 // Action creators
-import { getAllUsers } from '../../../store/saga-effects/saga-actions';
+import { getAllUsers, getUserById, deleteUserById } from '../../../store/saga-effects/saga-actions';
 
 // import components
 import Header from '../../Header';
@@ -12,13 +12,14 @@ import UserInfoList from '../../User-Info-list';
 
 class App extends Component {
   render() {
-    const { singleUser, allUsers } = this.props; // we have data) its all okay)
+    const { singleUser, allUsers } = this.props; // state data
+    const { getUserById, deleteUserById } = this.props; // functions
     return(
       <div className='wrapper'>
-        <Header />
+        <Header usersCount={allUsers.length} />
         <div className='content'>
-          <ListUser allUsers={allUsers} />
-          <UserInfoList />
+          <ListUser allUsers={allUsers} getUserById={getUserById} />
+          <UserInfoList userInfo={singleUser} deleteUserById={deleteUserById} />
         </div>
       </div>
     );
@@ -35,6 +36,8 @@ const putStateToProps = ({ userReducer, allUsersReducer }) => {
 const putDispatchToProps = (dispatch) => {
   return {
     getAllUsers: dispatch(getAllUsers()),
+    getUserById: (id) => dispatch(getUserById(id)),
+    deleteUserById: (id) => dispatch(deleteUserById(id)),
   }
 };
 

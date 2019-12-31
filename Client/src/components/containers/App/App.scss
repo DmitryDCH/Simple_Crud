@@ -134,3 +134,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
+.content {
+  display: flex;
+  justify-content: space-between;
+}

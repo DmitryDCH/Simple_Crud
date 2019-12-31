@@ -1,10 +1,16 @@
-const initialState = {};
+import { PUT_USER, PUT_DELETE_USER } from '../saga-effects/saga-actions';
+
+const initialState = null;
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    // todo
+    case PUT_USER:
+      return action.user;
+    case PUT_DELETE_USER:
+      return null;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default userReducer;

@@ -9,6 +9,24 @@ class Request_Service {
       console.error(`Cannot get data from ${this._baseUrl}${url} ->`, error);
     }
   }
+  
+  delete = async (url, body) => {
+    try {
+      const responce = await fetch(`${this._baseUrl}${url}`, {
+        method: 'DELETE',
+        headers: this._getHeaders(),
+        body: JSON.stringify(body),
+      });
+      return await responce.json();
+    } catch (error) {
+      console.error(`Cannot post data to ${this._baseUrl}${url} ->`, error);
+    }
+  }
+
+  _getHeaders = () => ({
+    'Content-Type': 'application/json',
+    'Accept-Type': 'application/json',
+});
 
 }
 
