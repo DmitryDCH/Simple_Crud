@@ -66,6 +66,20 @@ const putUpdateUser = (updatedUser) => {
   }
 }
 
+const addUser = (addUser) => {
+  return {
+    type: CREATE_USER,
+    addUser,
+  }
+};
+
+const putCreatedUser = (createdUser) => {
+  return {
+    type: PUT_CREATE_USER,
+    createdUser,
+  }
+}
+
 
 export {
  GET_ALL_USERS,
@@ -86,4 +100,6 @@ export {
  putInfoAboutDeleteUser,
  updateUser,
  putUpdateUser,
+ addUser,
+ putCreatedUser,
 }

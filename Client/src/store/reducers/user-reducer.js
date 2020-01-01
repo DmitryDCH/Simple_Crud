@@ -1,4 +1,4 @@
-import { PUT_USER, PUT_DELETE_USER, PUT_UPDATE_USER } from '../saga-effects/saga-actions';
+import { PUT_USER, PUT_DELETE_USER, PUT_UPDATE_USER, PUT_CREATE_USER } from '../saga-effects/saga-actions';
 
 const initialState = null;
 
@@ -18,6 +18,12 @@ const userReducer = (state = initialState, action) => {
         password: action.updatedUser.password,
       }
       return newState;
+    case PUT_CREATE_USER:
+      const newUser = {
+        ...state,
+        ...action.createdUser.createdUser
+      };
+      return newUser;
     default:
       return state;
   }

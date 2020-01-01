@@ -18,10 +18,15 @@ const updateUser_request = async (id, body) => {
   return await Request_Service.update(`${userPath}/${id}`, body);
 }
 
+const addUser_request = async (body) => {
+  return await Request_Service.post(`${userPath}/`, body);
+}
+
 
 export {
   getAllUsers_request,
   getUserById_request,
   deleteUser_request,
-  updateUser_request
+  updateUser_request,
+  addUser_request,
 };

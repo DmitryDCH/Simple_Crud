@@ -1,4 +1,4 @@
-import { PUT_USERS, PUT_DELETE_USER } from '../saga-effects/saga-actions';
+import { PUT_USERS, PUT_DELETE_USER, CREATE_USER } from '../saga-effects/saga-actions';
 
 const initialState = [];
 
@@ -10,6 +10,13 @@ const allUserReducer = (state = initialState, action) => {
         const id = action.deleteUser.deletedUser._id;
         const newState = state.filter(elem => elem._id !== id);
       return newState;
+    case CREATE_USER:
+      const { addUser } = action;
+      const newUserState = [
+        ...state,
+        addUser
+      ];
+      return newUserState;
     default:
       return state;
   }

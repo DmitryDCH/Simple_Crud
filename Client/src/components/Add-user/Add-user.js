@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import './Modal-form.scss';
+import './Add-user.scss';
 
-export default class ModalForm extends Component {
-
-  // state for get form data ? mb ref ?
+export default class AddUser extends Component {
 
   state={
     name: '',
@@ -15,8 +13,9 @@ export default class ModalForm extends Component {
 
   onSubmith = (e) => {
     e.preventDefault();
-    const { updateUser, userInfo } = this.props;
-    updateUser(userInfo._id, this.state);
+    const { addUser } = this.props;
+    const state = this.state;
+    addUser(state);
     this.setState({
       name: '',
       surname: '',
@@ -58,13 +57,6 @@ export default class ModalForm extends Component {
   }
 
   render() {
-
-    const { userInfo } = this.props;
-    
-    if( userInfo === null ) {
-      return null;
-    }
-
     const { name, surname, nickname, email, password } = this.state;
     
     return(
@@ -90,7 +82,7 @@ export default class ModalForm extends Component {
             <label htmlFor='password'>Enter password</label>
             <input type='text' minLength='6' name='password' required placeholder='Enter password' onChange={this.passwordHandler} value={password} />
           </div>
-          <button type='submit'>Update</button>
+          <button type='submit'>Add new USER</button>
         </form>
       </div>
     );
