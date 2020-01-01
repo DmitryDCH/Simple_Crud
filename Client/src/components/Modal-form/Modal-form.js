@@ -3,8 +3,6 @@ import './Modal-form.scss';
 
 export default class ModalForm extends Component {
 
-  // state for get form data ? mb ref ?
-
   state={
     name: '',
     surname: '',

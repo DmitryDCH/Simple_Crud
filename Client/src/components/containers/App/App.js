@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import './App.scss';
 
 // Action creators
-import { getAllUsers, getUserById, deleteUserById, updateUser, addUser } from '../../../store/saga-effects/saga-actions';
+import { 
+  getAllUsers,
+  getUserById,
+  deleteUserById,
+  updateUser,
+  addUser, 
+} from '../../../store/actions/actions';
 
 // import components
 import Header from '../../Header';
@@ -14,8 +20,20 @@ import AddUser from '../../Add-user';
 
 class App extends Component {
   render() {
-    const { singleUser, allUsers } = this.props; // state data
-    const { getUserById, deleteUserById, updateUser, addUser } = this.props; // functions
+
+    const { 
+      singleUser,
+      allUsers 
+    } = this.props; // state data
+
+
+    const { 
+      getUserById,
+      deleteUserById,
+      updateUser,
+      addUser 
+    } = this.props; // functions
+
     return(
       <div className='wrapper'>
         <Header usersCount={allUsers.length} />

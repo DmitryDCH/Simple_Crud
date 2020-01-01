@@ -31,24 +31,28 @@ export default class AddUser extends Component {
       name: value,
     });
   }
+
   surnameHandler = (e) => {
     const { value } = e.target;
     this.setState({
       surname: value,
     });
   }
+
   nicknameHandler = (e) => {
     const { value } = e.target;
     this.setState({
       nickname: value,
     });
   }
+
   emailHandler = (e) => {
     const { value } = e.target;
     this.setState({
       email: value,
     })
   }
+  
   passwordHandler = (e) => {
     const { value } = e.target;
     this.setState({

@@ -1,9 +1,14 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { GET_ALL_USERS,  GET_USER_BY_ID, DELETE_USER, UPDATE_USER_BY_ID, CREATE_USER } from './saga-actions'
+// types of listen actions
+import { GET_ALL_USERS,  GET_USER_BY_ID, DELETE_USER, UPDATE_USER_BY_ID, CREATE_USER } from './saga-actions-type';
+
+// Put-action-creators
 import { putAllUsers, putSignleUser, putInfoAboutDeleteUser, putUpdateUser, putCreatedUser } from './saga-actions';
 
+// Api-requests
 import { getAllUsers_request, getUserById_request, deleteUser_request, updateUser_request, addUser_request } from '../../services/user-service';
+
 
 function* getAllUsers() {
   try {
@@ -35,7 +40,7 @@ function* deleteUser({ id }) {
 function* updateUser({ id, body }) {
   try {
     yield call(updateUser_request, id, body);
-    yield put(putUpdateUser(body));
+    yield put(putUpdateUser(body, id));
   } catch (error) {
     console.error('Problem with saga-updateUser', error);
   }
