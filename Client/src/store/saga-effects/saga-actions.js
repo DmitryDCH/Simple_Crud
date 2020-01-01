@@ -51,6 +51,21 @@ const putInfoAboutDeleteUser = (deleteUser) => {
   }
 }
 
+const updateUser = (id, body) => {
+  return {
+    type: UPDATE_USER_BY_ID,
+    id,
+    body,
+  }
+};
+
+const putUpdateUser = (updatedUser) => {
+  return {
+    type: PUT_UPDATE_USER,
+    updatedUser,
+  }
+}
+
 
 export {
  GET_ALL_USERS,
@@ -68,5 +83,7 @@ export {
  getUserById,
  putSignleUser,
  deleteUserById,
- putInfoAboutDeleteUser
+ putInfoAboutDeleteUser,
+ updateUser,
+ putUpdateUser,
 }

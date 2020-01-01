@@ -10,7 +10,6 @@ const UserInfoList = ({ userInfo, deleteUserById }) => {
     );
   }
   const { name, surname, nickname, email, password, _id } = userInfo;
-
   return(
     <section className='user-info'>
       <ul className='user-info_list'>
@@ -51,7 +50,6 @@ const UserInfoList = ({ userInfo, deleteUserById }) => {
           </span>
         </li>
         <li className='user-info_list_item'>
-          <button className='btn-action_update'>Update user</button>
           <button className='btn-action_delete' onClick={() => deleteUserById(_id)}>Delete user</button>
         </li>
       </ul>

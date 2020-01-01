@@ -1,9 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { GET_ALL_USERS,  GET_USER_BY_ID, DELETE_USER } from './saga-actions'
-import { putAllUsers, putSignleUser, putInfoAboutDeleteUser } from './saga-actions';
+import { GET_ALL_USERS,  GET_USER_BY_ID, DELETE_USER, UPDATE_USER_BY_ID } from './saga-actions'
+import { putAllUsers, putSignleUser, putInfoAboutDeleteUser, putUpdateUser } from './saga-actions';
 
-import { getAllUsers_request, getUserById_request, deleteUser_request } from '../../services/user-service';
+import { getAllUsers_request, getUserById_request, deleteUser_request, updateUser_request } from '../../services/user-service';
 
 function* getAllUsers() {
   try {
@@ -32,11 +32,21 @@ function* deleteUser({ id }) {
   }
 }
 
+function* updateUser({ id, body }) {
+  try {
+    yield call(updateUser_request, id, body);
+    yield put(putUpdateUser(body));
+  } catch (error) {
+    console.error('Problem with saga-uodateUser', error);
+  }
+}
+
 
 function* rootSaga() {
   yield takeEvery(GET_ALL_USERS, getAllUsers);
   yield takeEvery(GET_USER_BY_ID, getUserById);
   yield takeEvery(DELETE_USER, deleteUser);
+  yield takeEvery(UPDATE_USER_BY_ID, updateUser);
 }
 
 export default rootSaga;
