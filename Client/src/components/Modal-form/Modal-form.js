@@ -60,7 +60,9 @@ export default class ModalForm extends Component {
     const { userInfo } = this.props;
     
     if( userInfo === null ) {
-      return null;
+      return(
+        <div className='form-wrapper'></div>
+      );
     }
 
     const { name, surname, nickname, email, password } = this.state;
