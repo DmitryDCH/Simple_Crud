@@ -37,46 +37,48 @@ it('New users should be added to list', () => {
   expect(newState.length).toBe(2);
 });
 
-// it('One of users shoud be delete from list', () => {
+it('One of users shoud be delete from list', () => {
 
-//   let firstUser = {
-//     _id: '312',
-//     name: 'Alex',
-//     surname: 'Smith',
-//     nickname: 'Gross',
-//     email: 'Alex@email.com',
-//     password: '123123qwe231',
-//   };
+  let firstUser = {
+    _id: '312',
+    name: 'Alex',
+    surname: 'Smith',
+    nickname: 'Gross',
+    email: 'Alex@email.com',
+    password: '123123qwe231',
+  };
 
-//   let secondUser = {
-//     _id: '123',
-//     name: 'Alex',
-//     surname: 'Smith',
-//     nickname: 'Gross',
-//     email: 'Alex@email.com',
-//     password: '123123qwe231',
-//   };
+  let secondUser = {
+    _id: '123',
+    name: 'Alex',
+    surname: 'Smith',
+    nickname: 'Gross',
+    email: 'Alex@email.com',
+    password: '123123qwe231',
+  };
 
-//   const users = [
-//     firstUser,
-//     secondUser,
-//   ];
+  const users = [
+    firstUser,
+    secondUser,
+  ];
 
-//   const  deletedUser = {
-//     _id: '123',
-//     name: 'Alex',
-//     surname: 'Smith',
-//     nickname: 'Gross',
-//     email: 'Alex@email.com',
-//     password: '123123qwe231',
-//   }
+  const  deleteUser = {
+    deletedUser: {
+      _id: '123',
+      name: 'Alex',
+      surname: 'Smith',
+      nickname: 'Gross',
+      email: 'Alex@email.com',
+      password: '123123qwe231',
+    }
+  }
 
-//   const action = putInfoAboutDeleteUser;
-//   const state = allUserReducer(users, action);
+  const action = putInfoAboutDeleteUser(deleteUser);
+  const state = allUserReducer(users, action);
 
-//   expect(state.length).toBe(1);
+  expect(state.length).toBe(1);
 
-// });
+});
 
 it('Should put one user to state', () => {
 
@@ -137,7 +139,7 @@ it('Should update one user in state', () => {
     },
   ];
   
-  const action = putUpdateUser(toUpdate, '1'); // PASTE ID!
+  const action = putUpdateUser(toUpdate, '1');
   const state = allUserReducer(initialState, action);
 
   expect(state[0]).toStrictEqual(toUpdate);
