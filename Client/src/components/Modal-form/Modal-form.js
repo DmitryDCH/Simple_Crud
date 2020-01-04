@@ -72,25 +72,25 @@ export default class ModalForm extends Component {
         <form onSubmit={this.onSubmith}>
           <div className='input-group'>
             <label htmlFor='name'>Enter name</label>
-            <input type='text' name='name' required placeholder='Enter name' onChange={this.nameHandler} value={name} />
+            <input type='text' name='name' id='update-name' required placeholder='Enter name' onChange={this.nameHandler} value={name} />
           </div>
           <div className='input-group'>
             <label htmlFor='surname'>Enter surname</label>
-            <input type='text' name='surname' required placeholder='Enter surname' onChange={this.surnameHandler} value={surname} />
+            <input type='text' id='update-surname' name='surname' required placeholder='Enter surname' onChange={this.surnameHandler} value={surname} />
           </div>
           <div className='input-group'>
             <label htmlFor='nickname'>Enter nickname</label>
-            <input type='text' name='nickname' required placeholder='Enter nickname' onChange={this.nicknameHandler} value={nickname} />
+            <input type='text' name='nickname' id='update-nickname' required placeholder='Enter nickname' onChange={this.nicknameHandler} value={nickname} />
           </div>
           <div className='input-group'>
             <label htmlFor='email'>Enter email</label>
-            <input type='email' name='email' required placeholder='Enter email' onChange={this.emailHandler} value={email} />
+            <input type='email' name='email' id='update-email' required placeholder='Enter email' onChange={this.emailHandler} value={email} />
           </div>
           <div className='input-group'>
             <label htmlFor='password'>Enter password</label>
-            <input type='text' minLength='6' name='password' required placeholder='Enter password' onChange={this.passwordHandler} value={password} />
+            <input type='text' minLength='6' id='update-password' name='password' required placeholder='Enter password' onChange={this.passwordHandler} value={password} />
           </div>
-          <button type='submit'>Update</button>
+          <button type='submit' id='update-submit'>Update</button>
         </form>
       </div>
     );
