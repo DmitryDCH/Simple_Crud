@@ -17,7 +17,8 @@ import {
   getAllUsers,
   getUserById,
   deleteUser,
-  updateUser
+  updateUser,
+  createUser,
 } from '../saga-effects';
 
 // Api
@@ -25,7 +26,8 @@ import {
   getAllUsers_request,
   getUserById_request,
   deleteUser_request,
-  updateUser_request
+  updateUser_request,
+  addUser_request,
 } from '../../../services/user-service';
 
 
@@ -37,7 +39,7 @@ it('Should get users from server', async () => {
     .withReducer(allUserReducer, initialState)
 
     const result = await users.run();
-
+    // if length === 0 or server is off - result = false
     expect(result.storeState.length > 0).toBe(true);
 });
 
@@ -64,72 +66,91 @@ it('Should get user by id', async () => {
 
 });
 
-// it('Should delete user from db', async () => {
+it('Should create new user', async () => {
 
-//   const userId = {
-//     id: '321',
-//   }
+  const newUser = {
+    addUser: {
+      name: 'Dima',
+      surname: 'Check',
+      nickname: 'WebTrust',
+      email: 'chekrkov@gmail.com',
+      password: '123123qwe321'
+    }
+  }
 
-//   let defaultUser = {
-//     id: '321',
-//     name: 'Alex',
-//     surname: 'Smith',
-//     nickname: 'Gross',
-//     email: 'Alex@email.com',
-//     password: '123123qwe231',
-//   };
+  const addingUser = expectSaga(createUser, newUser)
+    .provide([call(addUser_request)])
+    .withReducer(allUserReducer, [])
 
-//   let defaultUser2 = {
-//     id:'123',
-//     name: 'User',
-//     surname: 'User',
-//     nickname: 'User-123',
-//     email: 'user@email.com',
-//     password: '123123eqw',
-//   };
+  const result = await addingUser.run();
+  const { _id, ...infoForExpect } = result.storeState[0];
+  expect(infoForExpect).toStrictEqual(newUser.addUser);
 
+  // we create new user and after success test -> delete this user
+  await deleteUser_request(_id);
 
+});
 
-//   const initialState = [defaultUser, defaultUser2];
+it('Should delete user from db', async () => {
 
-//   const deletedUser = expectSaga(deleteUser, userId)
-//     .provide([call(deleteUser_request)])
-//     .withReducer(allUserReducer, initialState)
+  const addUser = {
+    name: 'Dima',
+    surname: 'Check',
+    nickname: 'WebTrust',
+    email: 'chekrkov@gmail.com',
+    password: '123123qwe321'
+  }
 
-//     const result = await deletedUser.run();
-//     console.log(result.storeState);
-// });
+  const newUserCreate = await addUser_request(addUser);
+  const { createdUser } = newUserCreate;
+  const idUser = {
+    id: createdUser._id,
+  }
 
+  const deletedUser = expectSaga(deleteUser, idUser)
+    .provide([call(deleteUser_request)])
+    .withReducer(allUserReducer, [])
 
-// delete user
-// updateUser
-// createUser mockData with new user must return message success and his data
-
-// it('Should update user', async () => {
-//   const userId = {
-//     id: '5e0cfe1a115ff3494c51946f',
-//   };
-
-//   const body = {
-//     name: 'User',
-//     surname: 'User',
-//     nickname: 'User-123',
-//     email: 'user@email.com',
-//     password: '123123eqw',
-//   };
-
-//   const initialState = {};
-
-//   const updatedUser = expectSaga(updateUser, userId, body)
-//     .provide([call(updateUser_request)])
-//     .withReducer(userReducer, initialState)
-
-//     const result = await updatedUser.run();
-//     console.log(result.storeState);
-//     // expect(result.storeState).toStrictEqual(userWithCurrentid);
+    const result = await deletedUser.run();
+    // user was created and deleted in server log
+    expect(result.storeState).toStrictEqual([]);
+});
 
 
-// });
 
+it('Should update user', async () => {
 
-// delete update create ??? see test under
+  const addUser = {
+    name: 'Dima',
+    surname: 'Check',
+    nickname: 'WebTrust',
+    email: 'chekrkov@gmail.com',
+    password: '123123qwe321',
+  }
+
+  const newUserCreate = await addUser_request(addUser);
+  const { createdUser } = newUserCreate;
+
+  const info = {
+    id: createdUser._id,
+    body: {
+      name: 'grade',
+      surname: 'Upgrade',
+      nickname: 'Upgrade',
+      email: 'Upgrade@gmail.com',
+      password: '123123qwe321',
+    }
+  }
+
+  const initialState = {};
+
+  const updatedUser = expectSaga(updateUser, info)
+    .provide([call(updateUser_request)])
+    .withReducer(userReducer, initialState)
+
+    const result = await updatedUser.run();
+    expect(result.storeState).toStrictEqual(info.body);
+
+    await deleteUser_request(info.id);
+
+});
