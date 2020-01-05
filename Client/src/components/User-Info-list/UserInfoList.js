@@ -15,31 +15,31 @@ const UserInfoList = ({ userInfo, deleteUserById }) => {
       <ul className='user-info_list'>
         <li className='user-info_list_item'>
           Name:
-          <span className='info'>
+          <span className='info name-info'>
             {name}
           </span>
         </li>
         <li className='user-info_list_item'>
           Surname:
-          <span className='info'>
+          <span className='info surname-info'>
             {surname}
           </span>
         </li>
         <li className='user-info_list_item'>
           Nickname:
-          <span className='info'>
+          <span className='info nickname-info'>
             {nickname}
           </span>
         </li>
         <li className='user-info_list_item'>
           Email:
-          <span className='info'>
+          <span className='info email-info'>
             {email}
           </span>
         </li>
         <li className='user-info_list_item'>
           Password:
-          <span className='info'>
+          <span className='info password-info'>
             {password}
           </span>
         </li>
