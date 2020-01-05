@@ -32,6 +32,21 @@ import {
 
 
 it('Should get users from server', async () => {
+
+  const addUser = {
+    name: 'Dima',
+    surname: 'Check',
+    nickname: 'WebTrust',
+    email: 'chekrkov@gmail.com',
+    password: '123123qwe321'
+  }
+
+  const newUserCreate = await addUser_request(addUser);
+  const { createdUser } = newUserCreate;
+  const idUser = {
+    id: createdUser._id,
+  }
+
   const initialState = [];
 
   const users =  expectSaga(getAllUsers)
@@ -41,28 +56,38 @@ it('Should get users from server', async () => {
     const result = await users.run();
     // if length === 0 or server is off - result = false
     expect(result.storeState.length > 0).toBe(true);
+
+    await deleteUser_request(idUser.id);
+
 });
 
 it('Should get user by id', async () => {
   const initialState = {};
 
-  const id = '5e0cfe1a115ff3494c51946f';
-
-  const userWithCurrentid = { 
-    _id: '5e0cfe1a115ff3494c51946f',
+  const addUser = {
     name: 'Dima',
     surname: 'Check',
     nickname: 'WebTrust',
-    email: 'churkov@gmail.com',
+    email: 'chekrkov@gmail.com',
     password: '123123qwe321'
-  };
+  }
 
-  const user = expectSaga(getUserById, { id })
+  const newUserCreate = await addUser_request(addUser);
+  const { createdUser } = newUserCreate;
+
+  const idUser = {
+    id: createdUser._id,
+  }
+
+  const user = expectSaga(getUserById, idUser)
     .provide([call(getUserById_request)])
     .withReducer(userReducer, initialState)
 
     const result = await user.run();
-    expect(result.storeState).toStrictEqual(userWithCurrentid);
+    delete result.storeState._id;
+    expect(result.storeState).toStrictEqual(addUser);
+
+    await deleteUser_request(idUser.id);
 
 });
 
