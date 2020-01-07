@@ -5,6 +5,8 @@ import {
   PUT_UPDATE_USER,
 } from '../saga-effects/saga-actions-type';
 
+import { remove } from 'lodash/array';
+
 const initialState = [];
 
 const allUserReducer = (state = initialState, action) => {
@@ -13,7 +15,9 @@ const allUserReducer = (state = initialState, action) => {
       return action.users;
     case PUT_DELETE_USER:
         const id = action.deleteUser.deletedUser._id;
-        const newState = state.filter(elem => elem._id !== id);
+        const newState = remove(state, (elem) => {
+          return elem._id !== id;
+        });
       return newState;
     case PUT_CREATE_USER:
       const newUserState = [
