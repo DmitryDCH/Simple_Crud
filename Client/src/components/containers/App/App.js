@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.scss';
 
+// Selectors
+import {
+  getSuperUser,
+  getSuperUsers
+} from '../../../store/reducers/user-selector';
+
 // Action creators
 import { 
   getAllUsers,
@@ -48,10 +54,12 @@ class App extends Component {
   }
 };
 
-const putStateToProps = ({ userReducer, allUsersReducer }) => {
+// redux-reselect in putStateToProps
+
+const putStateToProps = (state) => {
   return{
-    singleUser: userReducer,
-    allUsers: allUsersReducer,
+    singleUser: getSuperUser(state),
+    allUsers: getSuperUsers(state),
   }
 };
 
