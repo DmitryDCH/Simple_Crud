@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './Modal-form.scss';
 
-export default class ModalForm extends Component {
+export default class ModalForm extends PureComponent {
 
   state={
     name: '',

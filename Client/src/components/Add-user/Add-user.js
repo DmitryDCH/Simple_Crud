@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+// Pure component have a condition which can hepls us do not re render this component if props or state doesnt not change
 import './Add-user.scss';
 
-export default class AddUser extends Component {
+export default class AddUser extends PureComponent {
 
   state={
     name: '',

@@ -10,14 +10,14 @@ export const getSingleUser = (state) => {
 };
 
 
-export const getSuperUsers = createSelector(getUsers, (users) => {
+export const getSuperUsers = createSelector([getUsers], (users) => {
     return users;
 });
 
-export const getSuperUser = createSelector(getSingleUser, (user) => {
+export const getSuperUser = createSelector([getSingleUser], (user) => {
     return user;
 });
 
-export const getUserLength = createSelector(getUsers, (users) => {
+export const getUserLength = createSelector([getUsers], (users) => {
     return users.length;
 });
