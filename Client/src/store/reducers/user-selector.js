@@ -17,3 +17,7 @@ export const getSuperUsers = createSelector(getUsers, (users) => {
 export const getSuperUser = createSelector(getSingleUser, (user) => {
     return user;
 });
+
+export const getUserLength = createSelector(getUsers, (users) => {
+    return users.length;
+});

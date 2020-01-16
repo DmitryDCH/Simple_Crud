@@ -5,7 +5,8 @@ import './App.scss';
 // Selectors
 import {
   getSuperUser,
-  getSuperUsers
+  getSuperUsers,
+  getUserLength,
 } from '../../../store/reducers/user-selector';
 
 // Action creators
@@ -29,7 +30,8 @@ class App extends Component {
 
     const { 
       singleUser,
-      allUsers 
+      allUsers,
+      usersLength
     } = this.props; // state data
 
 
@@ -42,7 +44,7 @@ class App extends Component {
 
     return(
       <div className='wrapper'>
-        <Header usersCount={allUsers.length} />
+        <Header usersCount={usersLength} />
         <div className='content'>
           <ListUser allUsers={allUsers} getUserById={getUserById} />
           <UserInfoList userInfo={singleUser} deleteUserById={deleteUserById} />
@@ -60,6 +62,7 @@ const putStateToProps = (state) => {
   return{
     singleUser: getSuperUser(state),
     allUsers: getSuperUsers(state),
+    usersLength: getUserLength(state),
   }
 };
 
