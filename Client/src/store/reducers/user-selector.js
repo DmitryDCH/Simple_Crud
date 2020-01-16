@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'; // in state doesnt change - selectors save this state and did not re render page
+import { createSelector } from 'reselect'; // in state doesnt change - selectors save this state and did not re render page, use with PureComponent
 // https://github.com/devSchacht/translations/blob/master/articles/reselect-selector-library-for-redux/readme.md
 
 export const getUsers = (state) => {
