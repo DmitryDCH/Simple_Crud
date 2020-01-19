@@ -1,0 +1,34 @@
+.user-list_item{
+  margin: 3rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .text {
+    font-weight: normal;
+    font-size: 1.3rem;
+    padding: 0.5rem 0rem;
+    .name {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .surname {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+  .all_info {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #008000;
+    font-size: 1.5rem;
+    border: none;
+    padding: 0.2rem;
+    cursor: pointer;
+    &:hover{
+      background-color: #000000;
+      color: yellow;
+      transition: 0.3s;
+    }
+  }
+}
