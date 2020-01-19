@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import './UserInfoList.scss';
 
+import PropTypes, { string } from 'prop-types';
+
 export default class UserInfoList extends PureComponent {
   render() {
     const { userInfo, deleteUserById } = this.props;
@@ -60,3 +62,7 @@ export default class UserInfoList extends PureComponent {
     );
   }
 }
+
+UserInfoList.propTypes = {
+  userInfo: PropTypes.objectOf(string),
+};

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import './Header.scss';
 
+import PropTypes from 'prop-types';
+
 export default class Header extends PureComponent {
   render() {
     const { usersCount } = this.props;
@@ -14,4 +16,8 @@ export default class Header extends PureComponent {
       </header>
     );
   }
+};
+
+Header.propTypes = {
+  usersCount: PropTypes.number,
 };

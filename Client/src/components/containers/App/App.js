@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.scss';
 
@@ -25,7 +25,7 @@ import UserInfoList from '../../User-Info-list';
 import ModalForm from '../../Modal-form';
 import AddUser from '../../Add-user';
 
-class App extends PureComponent {
+class App extends Component {
   render() {
 
     const { 

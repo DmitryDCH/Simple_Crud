@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './List-User-Item.scss';
 
-export default class ListUserItem extends Component {
+import PropTypes from 'prop-types';
+
+export default class ListUserItem extends PureComponent {
   render() {
     const { name, surname, getUserById } = this.props;
     return(
@@ -12,4 +14,10 @@ export default class ListUserItem extends Component {
       </li>
     );
   }
+};
+
+ListUserItem.propTypes = {
+  name: PropTypes.string,
+  surname: PropTypes.string,
+  getUserById: PropTypes.func,
 };

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import './List-User.scss';
 
+import PropTypes from 'prop-types';
+
 // Spinner
 import Spinner from '../utils/Spinner';
 
@@ -30,3 +32,8 @@ export default class ListUser extends PureComponent {
     );
   }
 }
+
+ListUser.propTypes = {
+  allUsers: PropTypes.arrayOf(PropTypes.object),
+  getUserById: PropTypes.func,
+};
